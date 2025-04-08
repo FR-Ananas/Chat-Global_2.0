@@ -3,32 +3,36 @@ const http = require("http");
 const { Server } = require("socket.io");
 const path = require("path");
 
+const { loadMessages, saveMessages } = require("./server/storage/messages");
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
 const PORT = process.env.PORT || 3000;
 
-// Statique pour le frontend
 app.use(express.static(path.join(__dirname, "client")));
 
-// Redirection de la racine vers la page de login
 app.get("/", (req, res) => {
   res.redirect("/login.html");
 });
 
-
-// Messages stockés temporairement (50 max)
-let messages = [];
-let users = {};
+// --- État serveur ---
+let messages = loadMessages();  // ← on charge au démarrage
+let users = {};  // socket.id ➜ pseudo
 
 io.on("connection", (socket) => {
-  console.log("Nouvel utilisateur connecté");
+  console.log("👤 Nouvelle connexion");
 
-  socket.on("new-user", (username) => {
+  socket.on("new-user", (username, callback) => {
+    if (Object.values(users).includes(username)) {
+      return callback({ success: false, message: "Ce pseudo est déjà utilisé." });
+    }
+
     users[socket.id] = username;
     socket.broadcast.emit("user-connected", username);
     socket.emit("chat-history", messages);
+    callback({ success: true });
   });
 
   socket.on("send-message", (msg) => {
@@ -36,8 +40,9 @@ io.on("connection", (socket) => {
     const message = { username, text: msg };
 
     messages.push(message);
-    if (messages.length > 50) messages.shift(); // Garde les 50 derniers
+    if (messages.length > 50) messages.shift();
 
+    saveMessages(messages);  // ← on persiste à chaque message
     io.emit("chat-message", message);
   });
 
