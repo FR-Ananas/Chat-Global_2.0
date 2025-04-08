@@ -42,7 +42,7 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
   msgEl.textContent = `${username} : ${text}`;
-
+  
   if (username === "Système") {
     msgEl.classList.add("system");
   }
@@ -56,3 +56,21 @@ function playConnectionSound() {
   explosionSound.currentTime = 0;
   explosionSound.play();
 }
+
+// === GESTION DU POPUP UTILISATEURS ===
+const popup = document.getElementById("user-popup");
+const userList = document.getElementById("user-list");
+
+function toggleUserPopup() {
+  popup.classList.toggle("hidden");
+}
+
+// Réception de la liste des utilisateurs en temps réel
+socket.on("update-users", (userArray) => {
+  userList.innerHTML = "";
+  userArray.forEach(user => {
+    const li = document.createElement("li");
+    li.textContent = user;
+    userList.appendChild(li);
+  });
+});
