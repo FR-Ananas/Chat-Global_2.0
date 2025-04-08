@@ -36,7 +36,13 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
-  msgEl.innerHTML = `<strong>${username}</strong> : ${text}`;
+  msgEl.textContent = `${username} : ${text}`;
+  
+  // 🎯 Classe spéciale pour messages système
+  if (username === "Système") {
+    msgEl.classList.add("system");
+  }
+
   document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
 }
