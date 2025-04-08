@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,12 +8,22 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="login-container">
-    <h2>Bienvenue</h2>
-    <input type="text" id="username" placeholder="Entre ton pseudo" required />
-    <button onclick="login()">Se connecter</button>
+  <div id="chat-frame">
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Nom du héros..." required />
+      <button type="submit">Entrer</button>
+    </form>
   </div>
-  <script src="js/login.js"></script>
-  <img src="img/mascotte.png" class="mascotte" alt="Mascotte spectrale">
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      if (username) {
+        localStorage.setItem("username", username);
+        window.location.href = "chat.html";
+      }
+    });
+  </script>
 </body>
 </html>
