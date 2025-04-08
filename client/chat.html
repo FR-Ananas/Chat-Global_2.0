@@ -1,37 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Global</title>
+  <title>Chat Global - Fantaisie</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="chat-container">
-    <div id="messages"></div>
-    <form id="message-form">
-      <input type="text" id="message-input" autocomplete="off" placeholder="Tape ton message..." />
-      <button>Envoyer</button>
-    </form>
-  </div>
-
-  <!-- 🔘 Boutons flottants -->
-  <div id="chat-buttons">
-    <button id="user-btn" onclick="toggleUserPopup()">👤</button>
-    <button id="portal-btn" onclick="window.location.href='https://slot-machine-7s19.onrender.com'">ж</button>
-  </div>
-
-  <!-- 📦 Popup utilisateurs -->
-  <div id="user-popup" class="popup hidden">
-    <div class="popup-inner">
-      <h3>Utilisateurs connectés</h3>
-      <ul id="user-list"></ul>
-      <button onclick="toggleUserPopup()">Fermer</button>
+  <div id="chat-frame">
+    <div id="chat-container">
+      <div id="messages"></div>
+      <form id="message-form">
+        <input type="text" id="message-input" autocomplete="off" placeholder="Entrez votre message..." />
+        <button>Envoyer</button>
+      </form>
     </div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/chat.js"></script>
-  <img src="img/mascotte.png" class="mascotte" alt="Mascotte spectrale">
 </body>
 </html>
