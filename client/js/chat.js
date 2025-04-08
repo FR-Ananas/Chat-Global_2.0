@@ -1,6 +1,9 @@
 const socket = io();
 const username = localStorage.getItem("username") || "Anonyme";
 
+// 🎧 Son d'explosion 8-bit pour ambiance rétro
+const explosionSound = new Audio("sfx/explosion.wav");
+
 socket.emit("new-user", username, (response) => {
   if (!response.success) {
     alert(response.message);
@@ -38,9 +41,12 @@ function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
   msgEl.textContent = `${username} : ${text}`;
   
-  // 🎯 Classe spéciale pour messages système
   if (username === "Système") {
     msgEl.classList.add("system");
+  } else {
+    // 🔊 Joue le son explosion rétro à chaque message utilisateur
+    explosionSound.currentTime = 0;
+    explosionSound.play();
   }
 
   document.getElementById("messages").appendChild(msgEl);
