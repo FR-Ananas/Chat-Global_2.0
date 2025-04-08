@@ -88,10 +88,34 @@ socket.on("update-users", (userArray) => {
 // 🧙 Animation lettre par lettre pour messages système
 function typeText(element, text, delay = 15) {
   let i = 0;
+  let currentText = "";
+  let cursorVisible = true;
+
+  // Crée le curseur animé `_`
+  const cursor = document.createElement("span");
+  cursor.textContent = "_";
+  cursor.style.display = "inline";
+
+  // Ajoute le curseur au message
   element.textContent = "";
+  element.appendChild(cursor);
+
+  // Animation clignotement curseur
+  const blink = setInterval(() => {
+    cursor.style.visibility = cursorVisible ? "visible" : "hidden";
+    cursorVisible = !cursorVisible;
+  }, 400);
+
+  // Animation lettre par lettre
   const interval = setInterval(() => {
-    element.textContent += text.charAt(i);
+    currentText += text.charAt(i);
+    element.childNodes[0].textContent = currentText;
     i++;
-    if (i >= text.length) clearInterval(interval);
+    if (i >= text.length) {
+      clearInterval(interval);
+      clearInterval(blink);
+      cursor.remove(); // Supprime le curseur à la fin
+      element.textContent = currentText;
+    }
   }, delay);
 }
