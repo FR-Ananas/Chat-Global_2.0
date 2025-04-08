@@ -42,17 +42,20 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
-  msgEl.textContent = `${username} : ${text}`;
-  
+
   if (username === "Système") {
     msgEl.classList.add("system");
+    typeText(msgEl, `${username} : ${text}`);
+  } else {
+    msgEl.textContent = `${username} : ${text}`;
+    msgEl.classList.add("message-flash");
   }
 
   document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
 }
 
-// 🔉 Son lors des connexions/déconnexions
+// 🔉 Connexion / déconnexion
 function playConnectionSound() {
   explosionSound.currentTime = 0;
   explosionSound.play();
@@ -68,7 +71,7 @@ function toggleUserPopup() {
   menuSound.play();
 }
 
-// Réception de la liste des utilisateurs en temps réel
+// 🔄 Mise à jour live des utilisateurs
 socket.on("update-users", (userArray) => {
   userList.innerHTML = "";
   userArray.forEach(user => {
@@ -77,3 +80,13 @@ socket.on("update-users", (userArray) => {
     userList.appendChild(li);
   });
 });
+
+// 🧙 Fonction lettre par lettre pour messages système
+function typeText(element, text, delay = 10) {
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, delay);
+}
