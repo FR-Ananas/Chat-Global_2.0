@@ -71,7 +71,7 @@ body {
 #chat-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100); /* 💡 fix iOS vh bug */
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
@@ -158,25 +158,7 @@ body {
   }
 }
 
-/* === Animations glitch === */
-@keyframes glitchBorder {
-  from {
-    border-color: #fff;
-  }
-  to {
-    border-color: #00ffff;
-  }
-}
-
-@keyframes glitchText {
-  0%   { transform: translate(0px, 0px); }
-  20%  { transform: translate(1px, -1px); }
-  40%  { transform: translate(-1px, 1px); }
-  60%  { transform: translate(1px, 1px); }
-  80%  { transform: translate(-1px, -1px); }
-  100% { transform: translate(0px, 0px); }
-}
-/* === Popup style terminal === */
+/* === Popup === */
 .popup {
   position: fixed;
   top: 0;
@@ -201,6 +183,8 @@ body {
   padding: 20px;
   max-width: 300px;
   text-align: center;
+  transform: scale(0.85);
+  animation: popupIn 0.2s ease-out forwards;
 }
 
 .popup-inner h3 {
@@ -246,10 +230,24 @@ body {
   color: #000;
   transform: scale(1.1);
 }
-/* === Animation d'ouverture popup glitch / zoom === */
-.popup-inner {
-  transform: scale(0.85);
-  animation: popupIn 0.2s ease-out forwards;
+
+/* === Animations === */
+@keyframes glitchBorder {
+  from {
+    border-color: #fff;
+  }
+  to {
+    border-color: #00ffff;
+  }
+}
+
+@keyframes glitchText {
+  0%   { transform: translate(0px, 0px); }
+  20%  { transform: translate(1px, -1px); }
+  40%  { transform: translate(-1px, 1px); }
+  60%  { transform: translate(1px, 1px); }
+  80%  { transform: translate(-1px, -1px); }
+  100% { transform: translate(0px, 0px); }
 }
 
 @keyframes popupIn {
