@@ -4,24 +4,28 @@
   padding: 0;
 }
 
-body {
+html, body {
   font-family: 'Segoe UI', sans-serif;
   background: #f0f2f5;
   color: #333;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
+/* === LOGIN PAGE === */
 .login-container {
+  width: 90%;
   max-width: 400px;
-  margin: auto;
-  margin-top: 10vh;
+  margin: 10vh auto;
   background: white;
-  padding: 30px;
+  padding: 30px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 15px;
 }
 
 .login-container input {
@@ -47,28 +51,28 @@ body {
   background-color: #0056b3;
 }
 
-/* Chat layout */
+
+/* === CHAT PAGE === */
 #chat-container {
-  max-width: 800px;
-  margin: auto;
-  margin-top: 30px;
-  background: white;
-  padding: 20px;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 15px;
+  border-radius: 0;
 }
 
 #messages {
   flex: 1;
   overflow-y: auto;
   border: 1px solid #eee;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
   background: #fafafa;
+  border-radius: 5px;
 }
 
 #messages div {
@@ -83,6 +87,7 @@ body {
 #message-form {
   display: flex;
   gap: 10px;
+  flex-wrap: nowrap;
 }
 
 #message-input {
@@ -107,15 +112,18 @@ body {
   background-color: #0056b3;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   #chat-container {
-    margin: 20px;
-    padding: 15px;
+    padding: 10px;
+  }
+
+  #messages {
+    font-size: 14px;
   }
 
   #message-form {
     flex-direction: column;
+    gap: 5px;
   }
 
   #message-form button {
