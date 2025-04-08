@@ -88,3 +88,21 @@ html, body {
   border-color: #666;
   color: #fff;
 }
+/* === SCROLLBAR DARK === */
+#messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+#messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#messages::-webkit-scrollbar-thumb {
+  background-color: #3a3a3a;
+  border-radius: 3px;
+  border: 1px solid #222;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+  background-color: #5a2a2a;
+}
