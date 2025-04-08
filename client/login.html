@@ -6,11 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Connexion</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    #chat-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    #username {
+      padding: 8px;
+      font-size: 10px;
+      width: 200px;
+      background: #111;
+      color: #ccc;
+      border: 2px solid #333;
+    }
+
+    #login-form button {
+      padding: 8px;
+      font-size: 10px;
+      background: #222;
+      border: 2px solid #444;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    #login-form button:hover {
+      background: #333;
+      border-color: #666;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <div id="chat-frame">
+  <div id="chat-wrapper">
     <form id="login-form">
-      <input type="text" id="username" placeholder="Nom du héros..." required />
+      <input type="text" id="username" placeholder="Nom d'aventurier..." required />
       <button type="submit">Entrer</button>
     </form>
   </div>
