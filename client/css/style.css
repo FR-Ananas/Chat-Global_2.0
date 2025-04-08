@@ -246,3 +246,19 @@ body {
   color: #000;
   transform: scale(1.1);
 }
+/* === Animation d'ouverture popup glitch / zoom === */
+.popup-inner {
+  transform: scale(0.85);
+  animation: popupIn 0.2s ease-out forwards;
+}
+
+@keyframes popupIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
