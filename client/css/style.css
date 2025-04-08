@@ -23,7 +23,7 @@ html, body {
   width: 90vw;
   max-width: 480px;
   aspect-ratio: 1 / 1;
-  background: url('img/fond.png') no-repeat center;
+  background: url('../img/fond.png') no-repeat center;
   background-size: contain;
 }
 
