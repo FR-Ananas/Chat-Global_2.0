@@ -6,14 +6,10 @@
   padding: 0;
 }
 
-input, textarea {
-  font-size: 16px; /* ✅ Évite le zoom automatique sur iOS */
-}
-
 html, body {
   font-family: 'Press Start 2P', monospace;
   background: #000;
-  color: #fff;
+  color: #cccccc;
   height: 100%;
   width: 100%;
 }
@@ -24,21 +20,20 @@ body {
   align-items: center;
 }
 
-/* === LOGIN PAGE === */
 .login-container {
   width: 90vw;
   max-width: 400px;
   background: #111;
   padding: 30px 20px;
-  border: 3px solid #fff;
+  border: 3px solid #8b0000;
   text-align: center;
-  animation: glitchBorder 1.5s infinite alternate;
+  animation: shimmerGlow 2s infinite alternate;
 }
 
 .login-container h2 {
   font-size: 16px;
   margin-bottom: 15px;
-  color: #fff;
+  color: #cccccc;
 }
 
 .login-container input {
@@ -46,69 +41,68 @@ body {
   padding: 12px;
   margin: 10px 0;
   background: #000;
-  color: #fff;
-  border: 2px solid #fff;
+  color: #cccccc;
+  border: 2px solid #8b0000;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .login-container button {
   width: 100%;
   padding: 12px;
-  background-color: #fff;
+  background-color: #8b0000;
   color: #000;
   border: none;
   font-weight: bold;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .login-container button:hover {
-  background-color: #00ffff;
+  background-color: #cc0000;
   color: #000;
 }
 
-/* === CHAT CARRÉ CENTRÉ === */
 #chat-container {
   display: flex;
   flex-direction: column;
   width: 95vw;
-  height: 95vw; /* carré ! */
+  height: 95vw;
   max-width: 800px;
   max-height: 800px;
   padding: 15px;
   background: #111;
-  border: 3px solid #fff;
-  animation: glitchBorder 1.8s infinite alternate;
-  box-shadow: 0 0 10px rgba(0,255,255,0.1);
+  box-shadow: 0 0 10px rgba(139,0,0,0.3);
+  animation: shimmerGlow 2s infinite alternate;
+  border: 3px solid #8b0000;
 }
 
 #messages {
   flex-grow: 1;
   overflow-y: auto;
-  border: 2px solid #fff;
+  border: 2px solid #8b0000;
   padding: 10px;
   margin-bottom: 10px;
   background: #000;
-  color: #fff;
+  color: #cccccc;
   font-size: 10px;
 }
 
 #messages div {
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #fff;
+  border: 1px solid #8b0000;
   background: #000;
-  color: #fff;
+  color: #cccccc;
   white-space: pre-wrap;
 }
 
 #messages div.system {
-  color: #00ffff;
-  border-color: #00ffff;
-  animation: glitchText 0.5s infinite alternate;
+  color: #cc0000;
+  border-color: #cc0000;
+  animation: shimmerGlow 1.5s infinite alternate;
 }
 
 #message-form {
@@ -120,27 +114,27 @@ body {
 #message-input {
   flex: 1;
   padding: 10px;
-  font-size: 16px; /* ✅ Taille minimum pour bloquer le zoom iOS */
+  font-size: 16px;
   font-family: inherit;
   background: #000;
-  color: #fff;
-  border: 2px solid #fff;
+  color: #cccccc;
+  border: 2px solid #8b0000;
 }
 
 #message-form button {
-  background-color: #fff;
-  border: 2px solid #fff;
+  background-color: #8b0000;
+  border: 2px solid #8b0000;
   color: #000;
   padding: 10px;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 #message-form button:hover {
-  background-color: #00ffff;
-  border-color: #fff;
+  background-color: #cc0000;
+  border-color: #cc0000;
   color: #000;
 }
 
@@ -179,16 +173,16 @@ body {
 
 .popup-inner {
   background: #111;
-  border: 3px solid #00ffff;
+  border: 3px solid #8b0000;
   padding: 20px;
   max-width: 300px;
   text-align: center;
   transform: scale(0.85);
-  animation: popupIn 0.2s ease-out forwards;
+  animation: popupIn 0.2s ease-out forwards, shimmerGlow 2s infinite alternate;
 }
 
 .popup-inner h3 {
-  color: #00ffff;
+  color: #cc0000;
   margin-bottom: 10px;
 }
 
@@ -200,8 +194,8 @@ body {
 
 #user-list li {
   padding: 5px;
-  border-bottom: 1px dashed #00ffff;
-  color: #fff;
+  border-bottom: 1px dashed #8b0000;
+  color: #cccccc;
 }
 
 /* === Boutons flottants === */
@@ -217,27 +211,29 @@ body {
 
 #chat-buttons button {
   background: #000;
-  color: #00ffff;
+  color: #cc0000;
   font-size: 18px;
-  border: 2px solid #00ffff;
+  border: 2px solid #cc0000;
   padding: 10px;
   cursor: pointer;
   font-family: 'Press Start 2P', monospace;
 }
 
 #chat-buttons button:hover {
-  background: #00ffff;
+  background: #cc0000;
   color: #000;
   transform: scale(1.1);
 }
 
 /* === Animations === */
-@keyframes glitchBorder {
-  from {
-    border-color: #fff;
+@keyframes shimmerGlow {
+  0% {
+    box-shadow: 0 0 4px #8b0000, 0 0 8px #400000 inset;
+    border-color: #4b0000;
   }
-  to {
-    border-color: #00ffff;
+  100% {
+    box-shadow: 0 0 8px #cc0000, 0 0 12px #8b0000 inset;
+    border-color: #cc0000;
   }
 }
 
@@ -260,6 +256,7 @@ body {
     opacity: 1;
   }
 }
+
 @media (min-width: 768px) {
   #chat-container {
     width: 90vw;
@@ -269,4 +266,3 @@ body {
     margin: auto;
   }
 }
-
