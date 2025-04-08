@@ -43,7 +43,7 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
   const messagesContainer = document.getElementById("messages");
-  messagesContainer.appendChild(msgEl); // ⚠️ Ajout DOM AVANT animation
+  messagesContainer.appendChild(msgEl); // Ajout au DOM
 
   if (username === "Système") {
     msgEl.classList.add("system");
@@ -56,7 +56,7 @@ function addMessage({ username, text }) {
   msgEl.scrollIntoView();
 }
 
-// 🔉 Connexion / déconnexion
+// 🔉 Son connexion / déconnexion
 function playConnectionSound() {
   explosionSound.currentTime = 0;
   explosionSound.play();
@@ -72,7 +72,7 @@ function toggleUserPopup() {
   menuSound.play();
 }
 
-// 🔄 Mise à jour live des utilisateurs
+// 🔄 Mise à jour des utilisateurs en live
 socket.on("update-users", (userArray) => {
   userList.innerHTML = "";
   userArray.forEach(user => {
@@ -83,8 +83,9 @@ socket.on("update-users", (userArray) => {
 });
 
 // 🧙 Animation lettre par lettre pour messages système
-function typeText(element, text, delay = 10) {
+function typeText(element, text, delay = 15) {
   let i = 0;
+  element.textContent = "";
   const interval = setInterval(() => {
     element.textContent += text.charAt(i);
     i++;
