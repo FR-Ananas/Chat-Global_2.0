@@ -43,6 +43,9 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
 
+  const messagesContainer = document.getElementById("messages");
+  messagesContainer.appendChild(msgEl); // ⬅️ Ajout immédiat AVANT animation
+
   if (username === "Système") {
     msgEl.classList.add("system");
     typeText(msgEl, `${username} : ${text}`);
@@ -50,6 +53,9 @@ function addMessage({ username, text }) {
     msgEl.textContent = `${username} : ${text}`;
     msgEl.classList.add("message-flash");
   }
+
+  msgEl.scrollIntoView();
+}
 
   document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
