@@ -283,7 +283,7 @@ body {
   animation: messagePop 0.25s ease-out;
 }
 
-/* === EFFET VHS GLOBAL === */
+/* === EFFET VHS VISUEL + CLAIR === */
 body::after {
   content: "";
   position: fixed;
@@ -294,24 +294,26 @@ body::after {
   z-index: 9999;
 
   background: repeating-linear-gradient(
-    rgba(255, 0, 0, 0.02) 0px,
-    rgba(255, 255, 255, 0.02) 1px,
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 1px,
     transparent 2px,
     transparent 4px
   );
 
-  animation: vhsStatic 0.5s infinite ease-in-out,
-             vhsDrift 6s infinite ease-in-out alternate;
-  mix-blend-mode: screen;
+  animation: vhsScan 0.2s infinite ease-in-out,
+             vhsDrift 5s infinite alternate;
+  mix-blend-mode: overlay;
+  opacity: 0.2;
 }
 
-@keyframes vhsStatic {
-  0%   { transform: translateY(0); opacity: 0.04; }
-  50%  { transform: translateY(-1px); opacity: 0.06; }
-  100% { transform: translateY(1px); opacity: 0.04; }
+@keyframes vhsScan {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-1.5px); }
+  100% { transform: translateY(1.5px); }
 }
 
 @keyframes vhsDrift {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-1.5px); }
+  100% { transform: translateX(-2px); }
 }
