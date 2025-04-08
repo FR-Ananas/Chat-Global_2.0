@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Global</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="chat-container">
+    <div id="messages"></div>
+    <form id="message-form">
+      <input type="text" id="message-input" autocomplete="off" placeholder="Tape ton message..." />
+      <button>Envoyer</button>
+    </form>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
