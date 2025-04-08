@@ -42,9 +42,8 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
-
   const messagesContainer = document.getElementById("messages");
-  messagesContainer.appendChild(msgEl); // ⬅️ Ajout immédiat AVANT animation
+  messagesContainer.appendChild(msgEl); // ⚠️ Ajout DOM AVANT animation
 
   if (username === "Système") {
     msgEl.classList.add("system");
@@ -54,10 +53,6 @@ function addMessage({ username, text }) {
     msgEl.classList.add("message-flash");
   }
 
-  msgEl.scrollIntoView();
-}
-
-  document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
 }
 
@@ -87,7 +82,7 @@ socket.on("update-users", (userArray) => {
   });
 });
 
-// 🧙 Fonction lettre par lettre pour messages système
+// 🧙 Animation lettre par lettre pour messages système
 function typeText(element, text, delay = 10) {
   let i = 0;
   const interval = setInterval(() => {
