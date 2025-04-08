@@ -20,6 +20,7 @@ body {
   align-items: center;
 }
 
+/* === LOGIN PAGE === */
 .login-container {
   width: 90vw;
   max-width: 400px;
@@ -65,6 +66,7 @@ body {
   color: #000;
 }
 
+/* === CHAT CONTAINER === */
 #chat-container {
   display: flex;
   flex-direction: column;
@@ -152,7 +154,17 @@ body {
   }
 }
 
-/* === Popup === */
+@media (min-width: 768px) {
+  #chat-container {
+    width: 90vw;
+    height: 90vh;
+    max-width: 1000px;
+    max-height: 90vh;
+    margin: auto;
+  }
+}
+
+/* === POPUP UTILISATEURS === */
 .popup {
   position: fixed;
   top: 0;
@@ -198,7 +210,7 @@ body {
   color: #cccccc;
 }
 
-/* === Boutons flottants === */
+/* === BOUTONS FLOTANTS === */
 #chat-buttons {
   position: fixed;
   bottom: 20px;
@@ -225,7 +237,7 @@ body {
   transform: scale(1.1);
 }
 
-/* === Animations === */
+/* === ANIMATIONS === */
 @keyframes shimmerGlow {
   0% {
     box-shadow: 0 0 4px #8b0000, 0 0 8px #400000 inset;
@@ -257,20 +269,6 @@ body {
   }
 }
 
-@media (min-width: 768px) {
-  #chat-container {
-    width: 90vw;
-    height: 90vh;
-    max-width: 1000px;
-    max-height: 90vh;
-    margin: auto;
-  }
-}
-/* === Envoi magique === */
-.message-flash {
-  animation: flashPop 0.4s ease-out;
-}
-
 @keyframes flashPop {
   0% {
     transform: scale(1.05);
@@ -283,7 +281,8 @@ body {
     opacity: 1;
   }
 }
-/* === Effet scanlines CRT === */
+
+/* === SCANLINES CRT === */
 body::before {
   content: "";
   position: fixed;
@@ -294,14 +293,10 @@ body::before {
   z-index: 9999;
   background-image: repeating-linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.04) 1px,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
     transparent 1px,
     transparent 3px
   );
   mix-blend-mode: soft-light;
 }
-  z-index: 1000;
-  mix-blend-mode: overlay;
-}
-
