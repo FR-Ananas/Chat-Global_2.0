@@ -282,38 +282,3 @@ body {
 .message-flash {
   animation: messagePop 0.25s ease-out;
 }
-
-/* === EFFET VHS VISUEL + CLAIR === */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.05) 0px,
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-
-  animation: vhsScan 0.2s infinite ease-in-out,
-             vhsDrift 5s infinite alternate;
-  mix-blend-mode: overlay;
-  opacity: 0.2;
-}
-
-@keyframes vhsScan {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-1.5px); }
-  100% { transform: translateY(1.5px); }
-}
-
-@keyframes vhsDrift {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-2px); }
-}
