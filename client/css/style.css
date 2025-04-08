@@ -12,6 +12,11 @@ html, body {
   width: 100%;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 /* === LOGIN PAGE === */
 .login-container {
   width: 90%;
@@ -22,10 +27,6 @@ html, body {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-}
-
-.login-container h2 {
-  margin-bottom: 15px;
 }
 
 .login-container input {
@@ -60,13 +61,13 @@ html, body {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  background: white;
   padding: 15px;
-  border-radius: 0;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
 }
 
 #messages {
-  flex: 1;
+  flex-grow: 1;
   overflow-y: auto;
   border: 1px solid #eee;
   padding: 10px;
@@ -123,7 +124,6 @@ html, body {
 
   #message-form {
     flex-direction: column;
-    gap: 5px;
   }
 
   #message-form button {
