@@ -36,7 +36,7 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
-  msgEl.textContent = `${username} : ${text}`;
+  msgEl.innerHTML = `<strong>${username}</strong> : ${text}`;
   document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
 }
