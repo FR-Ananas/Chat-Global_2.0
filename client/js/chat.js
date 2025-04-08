@@ -1,7 +1,7 @@
 const socket = io();
 const username = localStorage.getItem("username") || "Anonyme";
 
-// 🎧 Son d'explosion 8-bit pour ambiance rétro
+// 🔊 Son 8-bit uniquement pour connexions/déconnexions
 const explosionSound = new Audio("sfx/explosion.wav");
 
 socket.emit("new-user", username, (response) => {
@@ -21,10 +21,12 @@ socket.on("chat-message", addMessage);
 
 socket.on("user-connected", (user) => {
   addMessage({ username: "Système", text: `${user} a rejoint le chat.` });
+  playConnectionSound();
 });
 
 socket.on("user-disconnected", (user) => {
   addMessage({ username: "Système", text: `${user} a quitté le chat.` });
+  playConnectionSound();
 });
 
 document.getElementById("message-form").addEventListener("submit", (e) => {
@@ -40,15 +42,17 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
   msgEl.textContent = `${username} : ${text}`;
-  
+
   if (username === "Système") {
     msgEl.classList.add("system");
-  } else {
-    // 🔊 Joue le son explosion rétro à chaque message utilisateur
-    explosionSound.currentTime = 0;
-    explosionSound.play();
   }
 
   document.getElementById("messages").appendChild(msgEl);
   msgEl.scrollIntoView();
+}
+
+// 🔉 Fonction dédiée pour jouer le son uniquement à la connexion
+function playConnectionSound() {
+  explosionSound.currentTime = 0;
+  explosionSound.play();
 }
