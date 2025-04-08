@@ -1,7 +1,14 @@
 const socket = io();
 const username = localStorage.getItem("username") || "Anonyme";
 
-socket.emit("new-user", username);
+socket.emit("new-user", username, (response) => {
+  if (!response.success) {
+    alert(response.message);
+    localStorage.removeItem("username");
+    window.location.href = "login.html";
+    return;
+  }
+});
 
 socket.on("chat-history", (history) => {
   history.forEach(addMessage);
