@@ -4,18 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Global - Fantaisie</title>
+  <title>Chat Gothique</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="chat-frame">
-    <div id="chat-container">
-      <div id="messages"></div>
-      <form id="message-form">
-        <input type="text" id="message-input" autocomplete="off" placeholder="Entrez votre message..." />
-        <button>Envoyer</button>
-      </form>
-    </div>
+  <div id="chat-wrapper">
+    <div id="messages"></div>
+    <form id="message-form">
+      <input type="text" id="message-input" autocomplete="off" placeholder="..." />
+      <button>Envoyer</button>
+    </form>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
