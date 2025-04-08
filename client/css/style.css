@@ -12,19 +12,18 @@ html, body {
   color: #fff;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 body {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* === LOGIN PAGE === */
 .login-container {
-  width: 90%;
+  width: 90vw;
   max-width: 400px;
-  margin: 10vh auto;
   background: #111;
   padding: 30px 20px;
   border: 3px solid #fff;
@@ -67,18 +66,19 @@ body {
   color: #000;
 }
 
-/* === CHAT PAGE === */
+/* === CHAT CARRÉ CENTRÉ === */
 #chat-container {
   display: flex;
   flex-direction: column;
-  height: calc(var(--vh, 1vh) * 100); /* 💡 fix iOS vh bug */
-  width: 100%;
+  width: 95vw;
+  height: 95vw; /* carré ! */
   max-width: 800px;
-  margin: 0 auto;
+  max-height: 800px;
   padding: 15px;
   background: #111;
   border: 3px solid #fff;
   animation: glitchBorder 1.8s infinite alternate;
+  box-shadow: 0 0 10px rgba(0,255,255,0.1);
 }
 
 #messages {
@@ -141,10 +141,6 @@ body {
 }
 
 @media (max-width: 600px) {
-  #chat-container {
-    padding: 10px;
-  }
-
   #messages {
     font-size: 9px;
   }
