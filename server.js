@@ -12,6 +12,12 @@ const PORT = process.env.PORT || 3000;
 // Statique pour le frontend
 app.use(express.static(path.join(__dirname, "client")));
 
+// Redirection de la racine vers la page de login
+app.get("/", (req, res) => {
+  res.redirect("/login.html");
+});
+
+
 // Messages stockés temporairement (50 max)
 let messages = [];
 let users = {};
