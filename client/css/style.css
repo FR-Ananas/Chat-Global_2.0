@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
@@ -8,290 +9,85 @@
 
 html, body {
   font-family: 'Press Start 2P', monospace;
-  background: #000;
-  color: #cccccc;
+  background-color: #0b0b0b;
+  color: #e0e0e0;
   height: 100%;
   width: 100%;
-}
-
-body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-container {
-  width: 90vw;
-  max-width: 400px;
-  background: #111;
-  padding: 30px 20px;
-  border: 3px solid #8b0000;
-  text-align: center;
-  animation: shimmerGlow 2s infinite alternate;
-}
-
-.login-container h2 {
-  font-size: 16px;
-  margin-bottom: 15px;
-  color: #cccccc;
-}
-
-.login-container input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  background: #000;
-  color: #cccccc;
-  border: 2px solid #8b0000;
-  font-family: inherit;
-  font-size: 16px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 12px;
-  background-color: #8b0000;
-  color: #000;
-  border: none;
-  font-weight: bold;
-  font-family: inherit;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.login-container button:hover {
-  background-color: #cc0000;
-  color: #000;
+#chat-frame {
+  position: relative;
+  width: 480px;
+  height: 480px;
+  background: url('img/fong.png') no-repeat center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 40px 20px 80px 20px;
 }
 
 #chat-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 95vw;
-  height: 95vw;
-  max-width: 800px;
-  max-height: 800px;
-  padding: 15px;
-  background: #111;
-  box-shadow: 0 0 10px rgba(139,0,0,0.3);
-  animation: shimmerGlow 2s infinite alternate;
-  border: 3px solid #8b0000;
+  gap: 10px;
+  z-index: 1;
 }
 
 #messages {
   flex-grow: 1;
   overflow-y: auto;
-  border: 2px solid #8b0000;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #333;
   padding: 10px;
-  margin-bottom: 10px;
-  background: #000;
-  color: #cccccc;
   font-size: 10px;
 }
 
 #messages div {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #8b0000;
-  background: #000;
-  color: #cccccc;
-  white-space: pre-wrap;
+  margin-bottom: 8px;
+  padding: 6px;
+  background-color: #1a1a1a;
+  border-left: 4px solid #5a2a2a;
 }
 
 #messages div.system {
-  color: #cc0000;
-  border-color: #cc0000;
-  animation: shimmerGlow 1.5s infinite alternate;
+  color: #ff4d4d;
+  font-style: italic;
 }
 
 #message-form {
   display: flex;
-  gap: 10px;
-  flex-wrap: nowrap;
+  gap: 5px;
 }
 
 #message-input {
   flex: 1;
   padding: 10px;
-  font-size: 16px;
+  font-size: 12px;
   font-family: inherit;
-  background: #000;
-  color: #cccccc;
-  border: 2px solid #8b0000;
+  background: #111;
+  color: #ccc;
+  border: 2px solid #444;
 }
 
 #message-form button {
-  background-color: #8b0000;
-  border: 2px solid #8b0000;
-  color: #000;
-  padding: 10px;
+  background-color: #2e2e2e;
+  border: 2px solid #666;
+  color: #ccc;
   font-family: inherit;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 12px;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
 #message-form button:hover {
-  background-color: #cc0000;
-  border-color: #cc0000;
-  color: #000;
-}
-
-@media (max-width: 600px) {
-  #messages {
-    font-size: 9px;
-  }
-
-  #message-form {
-    flex-direction: column;
-  }
-
-  #message-form button {
-    width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  #chat-container {
-    width: 90vw;
-    height: 90vh;
-    max-width: 1000px;
-    max-height: 90vh;
-    margin: auto;
-  }
-}
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-}
-
-.popup.hidden {
-  display: none;
-}
-
-.popup-inner {
-  background: #111;
-  border: 3px solid #8b0000;
-  padding: 20px;
-  max-width: 300px;
-  text-align: center;
-  transform: scale(0.85);
-  animation: popupIn 0.2s ease-out forwards, shimmerGlow 2s infinite alternate;
-}
-
-.popup-inner h3 {
-  color: #cc0000;
-  margin-bottom: 10px;
-}
-
-#user-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 10px;
-}
-
-#user-list li {
-  padding: 5px;
-  border-bottom: 1px dashed #8b0000;
-  color: #cccccc;
-}
-
-#chat-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 999;
-}
-
-#chat-buttons button {
-  background: #000;
-  color: #cc0000;
-  font-size: 18px;
-  border: 2px solid #cc0000;
-  padding: 10px;
-  cursor: pointer;
-  font-family: 'Press Start 2P', monospace;
-}
-
-#chat-buttons button:hover {
-  background: #cc0000;
-  color: #000;
-  transform: scale(1.1);
-}
-
-/* === ANIMATIONS === */
-@keyframes shimmerGlow {
-  0% {
-    box-shadow: 0 0 4px #8b0000, 0 0 8px #400000 inset;
-    border-color: #4b0000;
-  }
-  100% {
-    box-shadow: 0 0 8px #cc0000, 0 0 12px #8b0000 inset;
-    border-color: #cc0000;
-  }
-}
-
-@keyframes glitchText {
-  0%   { transform: translate(0px, 0px); }
-  20%  { transform: translate(1px, -1px); }
-  40%  { transform: translate(-1px, 1px); }
-  60%  { transform: translate(1px, 1px); }
-  80%  { transform: translate(-1px, -1px); }
-  100% { transform: translate(0px, 0px); }
-}
-
-@keyframes popupIn {
-  from {
-    transform: scale(0.85);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes messagePop {
-  0% {
-    transform: scale(1.02);
-    opacity: 0.5;
-    box-shadow: 0 0 6px #cc0000;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    box-shadow: none;
-  }
-}
-
-/* === EFFET MESSAGE À L'ENVOI === */
-.message-flash {
-  animation: messagePop 0.25s ease-out;
-}
-/* === MASCOTTE — Apparition Spectrale === */
-.mascotte {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 180px;
-  height: auto;
-  opacity: 0.2;
-  z-index: 1;
-  pointer-events: none;
-  image-rendering: pixelated;
-  filter: grayscale(100%) brightness(1.2) contrast(1.2);
+  background-color: #444;
+  color: #fff;
+  border-color: #888;
 }
