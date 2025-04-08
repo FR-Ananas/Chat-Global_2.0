@@ -1,8 +1,9 @@
 const socket = io();
 const username = localStorage.getItem("username") || "Anonyme";
 
-// 🔊 Son 8-bit uniquement pour connexions/déconnexions
+// 🔊 Sons rétro
 const explosionSound = new Audio("sfx/explosion.wav");
+const menuSound = new Audio("sfx/menu.wav");
 
 socket.emit("new-user", username, (response) => {
   if (!response.success) {
@@ -51,7 +52,7 @@ function addMessage({ username, text }) {
   msgEl.scrollIntoView();
 }
 
-// 🔉 Fonction dédiée pour jouer le son uniquement à la connexion
+// 🔉 Son lors des connexions/déconnexions
 function playConnectionSound() {
   explosionSound.currentTime = 0;
   explosionSound.play();
@@ -63,6 +64,8 @@ const userList = document.getElementById("user-list");
 
 function toggleUserPopup() {
   popup.classList.toggle("hidden");
+  menuSound.currentTime = 0;
+  menuSound.play();
 }
 
 // Réception de la liste des utilisateurs en temps réel
