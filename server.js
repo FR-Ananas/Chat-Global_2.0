@@ -18,12 +18,13 @@ app.get("/", (req, res) => {
 });
 
 // --- État serveur ---
-let messages = loadMessages();  // ← on charge au démarrage
+let messages = loadMessages();  // ← on charge les messages au démarrage
 let users = {};  // socket.id ➜ pseudo
 
 io.on("connection", (socket) => {
   console.log("👤 Nouvelle connexion");
 
+  // 🎯 Nouvelle gestion des utilisateurs avec liste synchronisée
   socket.on("new-user", (username, callback) => {
     if (Object.values(users).includes(username)) {
       return callback({ success: false, message: "Ce pseudo est déjà utilisé." });
@@ -32,6 +33,9 @@ io.on("connection", (socket) => {
     users[socket.id] = username;
     socket.broadcast.emit("user-connected", username);
     socket.emit("chat-history", messages);
+
+    // 🔄 Mise à jour de la liste des utilisateurs pour tous
+    io.emit("update-users", Object.values(users));
     callback({ success: true });
   });
 
@@ -49,7 +53,12 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const username = users[socket.id];
     delete users[socket.id];
-    if (username) io.emit("user-disconnected", username);
+
+    if (username) {
+      io.emit("user-disconnected", username);
+      // 🔄 Mise à jour de la liste après déconnexion
+      io.emit("update-users", Object.values(users));
+    }
   });
 });
 
