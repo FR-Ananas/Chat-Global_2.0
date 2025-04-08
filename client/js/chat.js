@@ -43,9 +43,12 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
 function addMessage({ username, text }) {
   const msgEl = document.createElement("div");
   const messagesContainer = document.getElementById("messages");
-  messagesContainer.appendChild(msgEl); // Ajout au DOM
+  messagesContainer.appendChild(msgEl);
 
-  if (username === "Système") {
+  // 🐛 DEBUG : Affiche l'expéditeur pour analyse
+  console.log("Message reçu de :", username);
+
+  if (username.trim().toLowerCase() === "système") {
     msgEl.classList.add("system");
     typeText(msgEl, `${username} : ${text}`);
   } else {
