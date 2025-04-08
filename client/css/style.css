@@ -106,3 +106,15 @@ html, body {
 #messages::-webkit-scrollbar-thumb:hover {
   background-color: #5a2a2a;
 }
+/* === MESSAGE SYSTÈME SACRÉ === */
+#messages div.system {
+  color: #ffd700;
+  font-style: normal;
+  font-weight: bold;
+  text-shadow:
+    0 0 4px #ffcc00,
+    0 0 8px #ffcc00,
+    0 0 12px #aa8800;
+  border-left: 3px solid #ffd700;
+  background: rgba(50, 40, 10, 0.2);
+}
